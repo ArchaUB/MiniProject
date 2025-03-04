@@ -25,7 +25,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center bg-blue bg-opacity-10 p-10 rounded-2xl shadow-lg backdrop-blur-md">
-          <h1 className="text-5xl font-extrabold mb-4">Welcome to Skill Assessment and Placement Training platform</h1>
+          <h1 className="text-5xl font-extrabold mb-4 ">Welcome to Skill Assessment and Placement Training platform</h1>
           <p className="text-lg mb-6 opacity-80">Your gateway to acing interviews and landing your dream job</p>
           <button
             onClick={() => router.push("/login")}

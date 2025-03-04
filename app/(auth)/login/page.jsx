@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ Ensure this is imported
 
 export default function StudentSignIn() {
+  const router = useRouter(); // ✅ Defined inside the function
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -44,6 +46,15 @@ export default function StudentSignIn() {
             Sign In
           </button>
         </form>
+        <p className="mt-6 text-grey-600">
+            Are you a teacher? {" "}
+            <button
+              onClick={() => router.push("/teacherlogin")}
+              className="text-orange-300 hover:underline focus:outline-none focus:ring-2 focus:ring-yellow-300"
+            >
+              Sign in here
+            </button>
+          </p>
       </div>
     </div>
   );

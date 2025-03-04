@@ -51,7 +51,7 @@ export default function TeacherSignIn() {
             Sign In
           </button>
         </form>
-        <p className="mt-6 text-grey-800">
+        <p className="mt-6 text-grey-600">
             Are you a student? {" "}
             <button
               onClick={() => router.push("/login")}

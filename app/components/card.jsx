@@ -1,15 +1,15 @@
 export const Card = ({ children, className = "" }) => {
-    return (
-      <div className={`bg-white rounded-lg p-4 shadow-md ${className}`}>
-        {children}
-      </div>
-    );
-  };
-  
-  export const CardContent = ({ children }) => {
-    return <div className="mt-2">{children}</div>;
-  };
-  
-  export const CardTitle = ({ children }) => {
-    return <h2 className="text-lg font-bold">{children}</h2>;
-  };
+  return (
+    <div className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}>
+      {children}
+    </div>
+  );
+};
+
+export const CardContent = ({ children }) => {
+  return <p className="text-gray-600 mt-2">{children}</p>;
+};
+
+export const CardTitle = ({ children }) => {
+  return <h2 className="text-xl font-semibold">{children}</h2>;
+};

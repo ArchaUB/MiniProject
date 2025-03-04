@@ -1,4 +1,4 @@
-import CreateTest from "./teacher-dashboard/CreateTest";
+import CreateTest from "./teacher-dashboard/CreateTest/page";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 
