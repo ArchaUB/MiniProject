@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"; // Import useRouter
 export default function TeacherSignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter(); //Define useRouter
+  const router = useRouter(); // Initialize useRouter
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,8 +13,8 @@ export default function TeacherSignIn() {
 
     // TODO: Add authentication logic here
 
-    //  Redirect to Teacher Dashboard after successful sign-in
-    router.push("/teacher-dashboard");
+    // Redirect to Teacher Dashboard after successful sign-in
+    router.push("/teacherdashboard");
   };
 
   return (
@@ -51,15 +51,15 @@ export default function TeacherSignIn() {
             Sign In
           </button>
         </form>
-        <p className="mt-6 text-grey-600">
-            Are you a student? {" "}
-            <button
-              onClick={() => router.push("/login")}
-              className="text-orange-300 hover:underline focus:outline-none focus:ring-2 focus:ring-yellow-300"
-            >
-              Sign in here
-            </button>
-          </p>
+        <p className="mt-6 text-gray-600">
+          Are you a student?{" "}
+          <button
+            onClick={() => router.push("/login")}
+            className="text-orange-500 hover:underline focus:outline-none focus:ring-2 focus:ring-yellow-300"
+          >
+            Sign in here
+          </button>
+        </p>
       </div>
     </div>
   );
