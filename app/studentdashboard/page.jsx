@@ -4,9 +4,12 @@ import { useState, useEffect } from "react";
 
 const StudentDashboard = () => {
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Math Assignment", deadline: "2025-03-08" },
-    { id: 2, title: "Science Project", deadline: "2025-03-07" },
-    { id: 3, title: "English Essay", deadline: "2025-03-06" },
+    { id: 1, title: "Math Assignment", deadline: "2025-03-08", color: "border-red-500" },
+    { id: 2, title: "Science Project", deadline: "2025-03-07", color: "border-green-500" },
+    { id: 3, title: "English Essay", deadline: "2025-03-06", color: "border-orange-500" },
+    { id: 4, title: "History Presentation", deadline: "2025-03-09", color: "border-blue-500" },
+    { id: 5, title: "Physics Lab Report", deadline: "2025-03-10", color: "border-black" },
+    { id: 6, title: "Chemistry Quiz", deadline: "2025-03-11", color: "border-pink-500" },
   ]);
 
   const student = {
@@ -52,7 +55,7 @@ const StudentDashboard = () => {
               {tasks.map((task) => (
                 <li
                   key={task.id}
-                  className="border p-4 rounded-lg bg-gray-100 flex justify-between items-center shadow-sm hover:bg-gray-200 transition"
+                  className={`border p-4 rounded-lg bg-gray-100 flex justify-between items-center shadow-sm hover:bg-gray-200 transition ${task.color}`}
                 >
                   <span className="font-medium">{task.title}</span>
                   <span className="text-sm text-gray-500">{new Date(task.deadline).toLocaleDateString()}</span>
@@ -62,8 +65,8 @@ const StudentDashboard = () => {
           </section>
 
           {/* Profile Section */}
-          <section className="bg-white p-6 shadow-xl rounded-xl flex flex-col items-center">
-            <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-3xl font-semibold rounded-full flex items-center justify-center shadow-md">
+          <section className="bg-white p-6 shadow-xl rounded-xl flex flex-col items-center w-full">
+            <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-3xl font-semibold rounded-full flex items-center justify-center shadow-md">
               {student.name.split(" ").map((n) => n[0]).join("")}
             </div>
             <h2 className="mt-3 font-semibold text-lg text-gray-800">{student.name}</h2>
@@ -72,7 +75,7 @@ const StudentDashboard = () => {
           </section>
 
           {/* Performance Analysis */}
-          <section className="bg-white p-6 shadow-xl rounded-xl col-span-3 text-center">
+          <section className="bg-white p-6 shadow-xl rounded-xl col-span-3 text-center h-40">
             <h2 className="text-xl font-semibold text-gray-800">{student.className}</h2>
             <p className="mt-2 text-gray-700">
               <span className="font-medium">{student.completedTasks}</span> / {student.totalTasks} tasks completed
@@ -87,54 +90,3 @@ const StudentDashboard = () => {
 };
 
 export default StudentDashboard;
-
-
-
-// "use client";
-
-// export default function StudentDashboard() {
-//   return (
-//     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-200">
-//       {/* Navbar */}
-//       <nav className="w-full bg-gray-900 py-4 px-10 flex justify-between items-center fixed top-0 left-0 right-0 shadow-md z-50">
-//         <h1 className="text-white text-xl font-bold">SAPT</h1>
-//         <a href="/" className="text-white hover:underline">Home</a>
-//       </nav>
-      
-//       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl mt-20">
-//         {/* Soft Skills Test Card */}
-//         <div className="bg-white p-8 rounded-2xl shadow-lg text-center transform transition duration-500 hover:scale-105 hover:shadow-2xl border border-purple-300">
-//           <h2 className="text-2xl font-semibold mb-4 text-purple-700">Soft Skills Test</h2>
-//           <button
-//             onClick={() => router.push("/soft-skills-test")}
-//             className="bg-purple-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-purple-800 transition-all font-medium"
-//           >
-//             Attempt Test
-//           </button>
-//         </div>
-
-//         {/* Coding Test Card */}
-//         <div className="bg-white p-8 rounded-2xl shadow-lg text-center transform transition duration-500 hover:scale-105 hover:shadow-2xl border border-blue-300">
-//           <h2 className="text-2xl font-semibold mb-4 text-blue-700">Coding Test</h2>
-//           <button
-//             onClick={() => router.push("/coding-test")}
-//             className="bg-blue-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-blue-800 transition-all font-medium"
-//           >
-//             Attempt Test
-//           </button>
-//         </div>
-
-//         {/* Aptitude Test Card */}
-//         <div className="bg-white p-8 rounded-2xl shadow-lg text-center transform transition duration-500 hover:scale-105 hover:shadow-2xl border border-green-300">
-//           <h2 className="text-2xl font-semibold mb-4 text-green-700">Aptitude Test</h2>
-//           <button
-//             onClick={() => router.push("/aptitude-test")}
-//             className="bg-green-600 text-white px-6 py-2 rounded-full shadow-md hover:bg-green-800 transition-all font-medium"
-//           >
-//             Attempt Test
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
