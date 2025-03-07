@@ -46,7 +46,7 @@ const StudentDashboard = () => {
       <div className="flex flex-row mt-16 h-[70vh]">
         {/* Sidebar */}
         {sidebarOpen && (
-          <aside className="w-1/6 bg-white p-6 shadow-xl h-full border-r border-gray-300 transition-transform">
+          <aside className="w-1/6 bg-white p-6 shadow-xl h-[70vh] border-r border-gray-300 transition-transform">
             <nav className="space-y-4 text-gray-700 font-medium">
               <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Soft Skills</a>
               <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Aptitude Test</a>
@@ -57,11 +57,11 @@ const StudentDashboard = () => {
         )}
 
         {/* Main Content */}
-        <main className="flex-grow p-8 grid grid-cols-2 gap-6">
+        <main className="flex-grow p-6 grid grid-cols-2 gap-4">
           {/* To-Do List */}
-          <section className="bg-white p-6 shadow-xl rounded-xl h-full">
+          <section className="bg-white p-6 shadow-xl rounded-xl h-full flex flex-col">
             <h2 className="text-lg font-semibold text-center border-b pb-2 text-gray-800">To-Do List</h2>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-2 flex-grow overflow-auto">
               {tasks.map((task) => (
                 <li
                   key={task.id}
@@ -85,7 +85,7 @@ const StudentDashboard = () => {
           </section>
 
           {/* Performance Analysis */}
-          <section className="bg-white p-6 shadow-xl rounded-xl col-span-2 text-center h-40">
+          <section className="bg-white p-6 shadow-xl rounded-xl col-span-2 text-center h-40 flex flex-col justify-center">
             <h2 className="text-xl font-semibold text-gray-800">{student.className}</h2>
             <p className="mt-2 text-gray-700">
               <span className="font-medium">{student.completedTasks}</span> / {student.totalTasks} tasks completed
