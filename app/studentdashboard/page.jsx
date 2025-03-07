@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Menu } from "lucide-react";
 
 const StudentDashboard = () => {
   const [tasks, setTasks] = useState([
@@ -11,6 +12,8 @@ const StudentDashboard = () => {
     { id: 5, title: "Physics Lab Report", deadline: "2025-03-10", color: "border-black" },
     { id: 6, title: "Chemistry Quiz", deadline: "2025-03-11", color: "border-pink-500" },
   ]);
+
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const student = {
     name: "John Doe",
@@ -31,25 +34,32 @@ const StudentDashboard = () => {
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col">
       {/* Navbar */}
       <nav className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 right-0 shadow-lg z-50">
-        <h1 className="text-3xl font-bold tracking-wide">SAPT</h1>
+        <div className="flex items-center gap-4">
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="focus:outline-none">
+            <Menu className="w-6 h-6" />
+          </button>
+          <h1 className="text-3xl font-bold tracking-wide">SAPT</h1>
+        </div>
         <a href="/" className="hover:underline text-sm font-medium">Home</a>
       </nav>
 
-      <div className="flex flex-row mt-16 h-full">
+      <div className="flex flex-row mt-16 h-[70vh]">
         {/* Sidebar */}
-        <aside className="w-1/6 bg-white p-6 shadow-xl min-h-screen border-r border-gray-300">
-          <nav className="space-y-4 text-gray-700 font-medium">
-            <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Soft Skills</a>
-            <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Aptitude Test</a>
-            <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Coding Test</a>
-            <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Attendance</a>
-          </nav>
-        </aside>
+        {sidebarOpen && (
+          <aside className="w-1/6 bg-white p-6 shadow-xl h-full border-r border-gray-300 transition-transform">
+            <nav className="space-y-4 text-gray-700 font-medium">
+              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Soft Skills</a>
+              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Aptitude Test</a>
+              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Coding Test</a>
+              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Attendance</a>
+            </nav>
+          </aside>
+        )}
 
         {/* Main Content */}
-        <main className="flex-grow p-8 grid grid-cols-3 gap-6">
+        <main className="flex-grow p-8 grid grid-cols-2 gap-6">
           {/* To-Do List */}
-          <section className="bg-white p-6 shadow-xl rounded-xl col-span-2">
+          <section className="bg-white p-6 shadow-xl rounded-xl h-full">
             <h2 className="text-lg font-semibold text-center border-b pb-2 text-gray-800">To-Do List</h2>
             <ul className="mt-4 space-y-3">
               {tasks.map((task) => (
@@ -65,7 +75,7 @@ const StudentDashboard = () => {
           </section>
 
           {/* Profile Section */}
-          <section className="bg-white p-6 shadow-xl rounded-xl flex flex-col items-center w-full">
+          <section className="bg-white p-6 shadow-xl rounded-xl flex flex-col items-center h-full">
             <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-3xl font-semibold rounded-full flex items-center justify-center shadow-md">
               {student.name.split(" ").map((n) => n[0]).join("")}
             </div>
@@ -75,7 +85,7 @@ const StudentDashboard = () => {
           </section>
 
           {/* Performance Analysis */}
-          <section className="bg-white p-6 shadow-xl rounded-xl col-span-3 text-center h-40">
+          <section className="bg-white p-6 shadow-xl rounded-xl col-span-2 text-center h-40">
             <h2 className="text-xl font-semibold text-gray-800">{student.className}</h2>
             <p className="mt-2 text-gray-700">
               <span className="font-medium">{student.completedTasks}</span> / {student.totalTasks} tasks completed
