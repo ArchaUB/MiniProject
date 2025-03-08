@@ -2,21 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const StudentDashboard = () => {
   const [tasks, setTasks] = useState([
-    { id: 1, title: "Math Assignment", deadline: "2025-03-08", color: "border-red-500" },
-    { id: 2, title: "Science Project", deadline: "2025-03-07", color: "border-green-500" },
-    { id: 3, title: "English Essay", deadline: "2025-03-06", color: "border-orange-500" },
-    { id: 4, title: "History Presentation", deadline: "2025-03-09", color: "border-blue-500" },
-    { id: 5, title: "Physics Lab Report", deadline: "2025-03-10", color: "border-black" },
-    { id: 6, title: "Chemistry Quiz", deadline: "2025-03-11", color: "border-pink-500" },
+    { id: 1, title: "Aptitude Test 1", deadline: "2025-03-08", color: "border-red-500" },
+    { id: 2, title: "Aptitude Test 2", deadline: "2025-03-07", color: "border-green-500" },
+    { id: 3, title: "Aptitude Test 3", deadline: "2025-03-06", color: "border-orange-500" },
+    { id: 4, title: "Aptitude Test 4", deadline: "2025-03-09", color: "border-blue-500" },
+    { id: 5, title: "Aptitude Test 5", deadline: "2025-03-10", color: "border-black" },
   ]);
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const student = {
-    name: "John Doe",
+    name: "Meera",
     className: "S6 IT",
     completedTasks: 14,
     totalTasks: 20,
@@ -29,6 +29,7 @@ const StudentDashboard = () => {
       [...prevTasks].sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
     );
   }, []);
+  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col">
@@ -48,9 +49,9 @@ const StudentDashboard = () => {
         {sidebarOpen && (
           <aside className="w-1/6 bg-white p-6 shadow-xl h-[70vh] border-r border-gray-300 transition-transform">
             <nav className="space-y-4 text-gray-700 font-medium">
-              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Soft Skills</a>
-              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Aptitude Test</a>
-              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Coding Test</a>
+             <button className="cursor-pointer" onClick={() => router.push("/studentdashboard/Studview")}> <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Tests</a></button>
+              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Result</a>
+              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Performance analysis</a>
               <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Attendance</a>
             </nav>
           </aside>
