@@ -17,7 +17,7 @@ export default function TeacherDashboard() {
             <CardContent>Design and create new tests with ease.</CardContent>
           </Card></button>
 
-          <button className="cursor-pointer" onClick={() => router.push("ViewTest")}> 
+          <button className="cursor-pointer" onClick={() => router.push("/teacherdashboard/ViewTest")}> 
           <Card>
             <CardTitle>View Test</CardTitle>
             <CardContent>Browse and manage existing tests.</CardContent>
