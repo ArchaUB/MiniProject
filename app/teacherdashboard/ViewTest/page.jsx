@@ -14,7 +14,7 @@ const TeacherViewTests = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex flex-col items-center p-8">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8">Previously Created Tests</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-6xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 w-full max-w-4xl">
         {tests.map((test) => (
           <div
             key={test.id}
@@ -34,3 +34,5 @@ const TeacherViewTests = () => {
 };
 
 export default TeacherViewTests;
+
+

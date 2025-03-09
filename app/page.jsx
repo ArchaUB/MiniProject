@@ -5,7 +5,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-500 to-purple-600 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-500 to-purple-600 text-white">
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full bg-blue bg-opacity-10 backdrop-blur-md shadow-md py-4 px-8 flex justify-between items-center text-lg text-white">
         <h1 className="text-2xl font-bold">SAPT</h1>
@@ -24,8 +24,8 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center bg-blue bg-opacity-10 p-10 rounded-2xl shadow-lg backdrop-blur-md">
-          <h1 className="text-5xl font-extrabold mb-4 ">Welcome to Skill Assessment and Placement Training platform</h1>
+      <div className="text-center bg-yellow bg-opacity-10 p-10 rounded-2xl shadow-2xl shadow-gray-500 backdrop-blur-md">
+      <h1 className="text-4xl font-extrabold mb-4 ">Welcome to Skill Assessment and Placement Training platform</h1>
           <p className="text-lg mb-6 opacity-80">Your gateway to acing interviews and landing your dream job</p>
           <button
             onClick={() => router.push("/login")}
