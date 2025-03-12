@@ -34,7 +34,7 @@ export default function StudentDashboard() {
         <div className="bg-white p-10 rounded-3xl shadow-lg text-center transform transition duration-500 hover:scale-105 hover:shadow-2xl border border-blue-300">
           <h2 className="text-3xl font-semibold mb-6 text-blue-700">Coding Test</h2>
           <button
-            onClick={() => router.push("/coding-test")}
+            onClick={() => router.push("/studentdashboard/Studview/codingtest")}
             className="bg-blue-600 text-white px-10 py-3 rounded-full shadow-md hover:bg-blue-800 transition-all font-medium"
           >
             Attempt Test

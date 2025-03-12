@@ -52,7 +52,6 @@ const StudentDashboard = () => {
              <button className="cursor-pointer" onClick={() => router.push("/studentdashboard/Studview")}> <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Tests</a></button>
               <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Result</a>
               <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Performance analysis</a>
-              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Attendance</a>
             </nav>
           </aside>
         )}
