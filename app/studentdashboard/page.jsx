@@ -32,9 +32,9 @@ const StudentDashboard = () => {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-500 to-purple-600 text-black">
       {/* Navbar */}
-      <nav className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 right-0 shadow-lg z-50">
+      <nav className="w-full bg-gradient-to-r from-yellow-500 to-purple-600 text-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 right-0 shadow-lg z-50">
         <div className="flex items-center gap-4">
           <button onClick={() => setSidebarOpen(!sidebarOpen)} className="focus:outline-none">
             <Menu className="w-6 h-6" />
@@ -47,12 +47,39 @@ const StudentDashboard = () => {
       <div className="flex flex-row mt-16 h-[70vh]">
         {/* Sidebar */}
         {sidebarOpen && (
-          <aside className="w-1/6 bg-white p-6 shadow-xl h-[70vh] border-r border-gray-300 transition-transform">
-            <nav className="space-y-4 text-gray-700 font-medium">
-             <button className="cursor-pointer" onClick={() => router.push("/studentdashboard/Studview")}> <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Tests</a></button>
-              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Result</a>
-              <a href="#" className="block py-3 px-5 rounded-lg hover:bg-blue-600 hover:text-white transition duration-300">Performance analysis</a>
-            </nav>
+          <aside className="w-1/6 bg-white p-6 shadow-xl min-h-[calc(100vh-4rem)] border-r border-gray-300 transition-transform">
+          <nav className="space-y-4 text-gray-700 font-medium">
+  <a
+    href="#"
+    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
+    >
+    Tests
+  </a>
+  <a
+    href="#"
+    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
+  >
+    Result
+  </a>
+  <a
+    href="#"
+    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
+  >
+    Performance analysis
+  </a>
+  <a
+    href="#"
+    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
+  >
+   Study Materials
+  </a><a
+    href="#"
+    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
+  >
+    My Courses
+  </a>
+</nav>
+
           </aside>
         )}
 
@@ -60,7 +87,7 @@ const StudentDashboard = () => {
         <main className="flex-grow p-6 grid grid-cols-2 gap-4">
           {/* To-Do List */}
           <section className="bg-white p-6 shadow-xl rounded-xl h-full flex flex-col">
-            <h2 className="text-lg font-semibold text-center border-b pb-2 text-gray-800">To-Do List</h2>
+            <h2 className="text-lg font-semibold text-center border-b pb-2 text-purple-800">Pending Works</h2>
             <ul className="mt-4 space-y-2 flex-grow overflow-auto">
               {tasks.map((task) => (
                 <li
@@ -76,7 +103,7 @@ const StudentDashboard = () => {
 
           {/* Profile Section */}
           <section className="bg-white p-6 shadow-xl rounded-xl flex flex-col items-center h-full">
-            <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-3xl font-semibold rounded-full flex items-center justify-center shadow-md">
+            <div className="w-32 h-32 bg-gradient-to-r from--yellow-500 to-purple-600 text-white text-3xl font-semibold rounded-full flex items-center justify-center shadow-md">
               {student.name.split(" ").map((n) => n[0]).join("")}
             </div>
             <h2 className="mt-3 font-semibold text-lg text-gray-800">{student.name}</h2>
@@ -91,7 +118,7 @@ const StudentDashboard = () => {
               <span className="font-medium">{student.completedTasks}</span> / {student.totalTasks} tasks completed
             </p>
             <p className="mt-2 text-gray-700">Rank: <span className="font-medium">{student.rank}</span></p>
-            <p className="mt-2 text-lg font-semibold text-indigo-700">{student.level}</p>
+            <p className="mt-2 text-lg font-semibold text-purple-600">{student.level}</p>
           </section>
         </main>
       </div>
