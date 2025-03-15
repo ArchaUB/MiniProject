@@ -2,69 +2,63 @@
 
 import { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Tabs, Tab } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 export default function CodingTestPage() {
-    const [activeTab, setActiveTab] = useState('description');
     const [code, setCode] = useState('');
+    const [output, setOutput] = useState('');
+
+    const runCode = () => {
+        setOutput('Running...');
+        // Simulate code execution (integration with backend needed)
+        setTimeout(() => setOutput('Execution successful!'), 1000);
+    };
+
+    const submitCode = () => {
+        setOutput('Submitting...');
+        // Simulate code submission (integration with backend needed)
+        setTimeout(() => setOutput('Submission successful!'), 1000);
+    };
 
     return (
         <div className="flex h-screen">
-            {/* Left Panel: Problem Description */}
-            <div className="w-1/2 h-full p-4 overflow-auto border-r">
-                <Card className="mb-4">
-                    <CardContent>
-                        <h1 className="text-2xl font-semibold">1768. Merge Strings Alternately</h1>
-                        <p className="mt-2">You are given two strings <code>word1</code> and <code>word2</code>. Merge the strings by adding letters in alternating order, starting with <code>word1</code>. If a string is longer than the other, append the additional letters at the end.</p>
-                        <p className="mt-2">Return the merged string.</p>
-                        <h2 className="text-xl font-semibold mt-4">Example 1:</h2>
-                        <pre className="bg-gray-100 p-2 rounded">Input: word1 = "abc", word2 = "pqr"<br />Output: "apbqcr"</pre>
-                        <h2 className="text-xl font-semibold mt-4">Example 2:</h2>
-                        <pre className="bg-gray-100 p-2 rounded">Input: word1 = "ab", word2 = "pqrs"<br />Output: "apbqrs"</pre>
-                        <h2 className="text-xl font-semibold mt-4">Example 3:</h2>
-                        <pre className="bg-gray-100 p-2 rounded">Input: word1 = "abcd", word2 = "pq"<br />Output: "apbqcd"</pre>
-                    </CardContent>
-                </Card>
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-2">
-                    <Tab value="description">Description</Tab>
-                    <Tab value="editorial">Editorial</Tab>
-                    <Tab value="solutions">Solutions</Tab>
-                    <Tab value="submissions">Submissions</Tab>
-                    <Tab value="hints">Hints</Tab>
-                    <Tab value="discussion">Discussion</Tab>
-                    <Tab value="topics">Topics</Tab>
-                </Tabs>
+            <div className="w-1/2 p-4 bg-gray-100 border-r">
+                <h2 className="text-2xl font-bold mb-4">Merge Strings Alternately</h2>
+                <p className="mb-2">You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.</p>
+                <h3 className="text-xl font-semibold mb-2">Example:</h3>
+                <pre className="bg-white p-2 rounded mb-2">Input: word1 = "abc", word2 = "pqr"
+Output: "apbqcr"</pre>
+                <pre className="bg-white p-2 rounded mb-2">Input: word1 = "ab", word2 = "pqrs"
+Output: "apbqrs"</pre>
+                <h3 className="text-xl font-semibold mb-2">Constraints:</h3>
+                <ul className="list-disc pl-5">
+                    <li>1 ≤ word1.length, word2.length ≤ 100</li>
+                    <li>word1 and word2 consist of lowercase English letters.</li>
+                </ul>
             </div>
 
-            {/* Right Panel: Code Editor */}
-            <div className="w-1/2 h-full p-4">
-                <Card className="h-full">
-                    <CardContent>
-                        <div className="flex justify-between items-center mb-2">
-                            <h2 className="text-xl font-semibold">Code</h2>
-                            <Button className="bg-green-500 text-white">Run</Button>
-                            <Button className="bg-blue-500 text-white">Submit</Button>
-                        </div>
-                        <textarea
-                            className="w-full h-80 p-2 mt-2 bg-gray-100 rounded"
+            <div className="w-1/2 p-4 bg-gray-50">
+                <Tabs defaultValue="code">
+                    <TabsList>
+                        <TabsTrigger value="code">Code</TabsTrigger>
+                        <TabsTrigger value="output">Output</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="code" className="mt-4">
+                        <Textarea
+                            placeholder="Write your code here..."
                             value={code}
                             onChange={(e) => setCode(e.target.value)}
-                            placeholder="Write your code here..."
+                            className="w-full h-64 p-2 border rounded"
                         />
-                        <div className="mt-4">
-                            <h3 className="text-lg font-semibold">Test Cases</h3>
-                            <pre className="bg-gray-100 p-2 rounded">Input: word1 = "abc", word2 = "pqr"<br />Expected Output: "apbqcr"</pre>
-                            <pre className="bg-gray-100 p-2 rounded">Input: word1 = "ab", word2 = "pqrs"<br />Expected Output: "apbqrs"</pre>
+                        <div className="mt-2 flex gap-2">
+                            <Button onClick={runCode} className="bg-blue-500">Run</Button>
+                            <Button onClick={submitCode} className="bg-green-500">Submit</Button>
                         </div>
-                        <div className="mt-4">
-                            <h3 className="text-lg font-semibold">Console Output</h3>
-                            <div className="bg-black text-white p-2 rounded h-32 overflow-auto">Console logs will appear here...</div>
-                        </div>
-                    </CardContent>
-                </Card>
+                    </TabsContent>
+                    <TabsContent value="output" className="mt-4">
+                        <pre className="p-2 bg-gray-200 rounded">{output}</pre>
+                    </TabsContent>
+                </Tabs>
             </div>
         </div>
     );
