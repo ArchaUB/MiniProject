@@ -16,9 +16,9 @@ const StudentViewTests = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex flex-col items-center p-8">
-       <nav className="w-full bg-gray-900 py-4 px-10 flex justify-between items-center fixed top-0 left-0 right-0 shadow-md z-50">
-        <h1 className="text-white text-xl font-bold">SAPT</h1>
-        <a href="/" className="text-white hover:underline">Home</a>
+       <nav className="w-full bg-gradient-to-br from-yellow-500 to-purple-600 text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 shadow-md z-50">
+        <h1 className="text-3xl font-bold">SAPT</h1>
+        <a href="/" className="hover:text-orange-300 cursor-pointer">Home</a>
       </nav>
       <div><h1 className="text-4xl font-extrabold text-gray-100 mb-8">.</h1></div>
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8">Available Tests</h1>

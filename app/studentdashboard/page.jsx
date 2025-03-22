@@ -14,7 +14,7 @@ const StudentDashboard = () => {
     { id: 5, title: "Aptitude Test 5", deadline: "2025-03-10", color: "border-black" },
   ]);
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const student = {
     name: "Meera",
@@ -45,47 +45,56 @@ const StudentDashboard = () => {
         <a href="/" className="hover:underline text-sm font-medium">Home</a>
       </nav>
 
-      <div className="flex flex-row mt-16 h-[70vh]">
-        {/* Sidebar */}
-        {sidebarOpen && (
-          <aside className="w-1/6 bg-white p-6 shadow-xl min-h-[calc(100vh-4rem)] border-r border-gray-300 transition-transform">
-          <nav className="space-y-4 text-gray-700 font-medium">
-  <a
-    onClick={()=>router.push("/studentdashboard/Studview")}
-    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
+      {/* Sidebar */}
+      {sidebarOpen && (
+  <div
+    className="fixed inset-0 bg-opacity-20 backdrop-blur-sm z-40"
+    onClick={() => setSidebarOpen(false)}
+  >
+    <aside
+      className={`fixed top-16 left-0 w-64 bg-white p-6 shadow-xl h-full z-50 transition-transform ${
+        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+      }`}
     >
-    Tests
-  </a>
-  <a
-    href="#"
-    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
-  >
-    Result
-  </a>
-  <a
-    href="#"
-    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
-  >
-    Performance analysis
-  </a>
-  <a
-    href="#"
-    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
-  >
-   Study Materials
-  </a><a
-    href="#"
-    className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300"
-  >
-    My Courses
-  </a>
-</nav>
+      <nav className="space-y-4 text-gray-700 font-medium">
+        <a
+          onClick={() => router.push("/studentdashboard/Studview")}
+          className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300 cursor-pointer"
+        >
+          Tests
+        </a>
+        <a
+          href="#"
+          className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300 cursor-pointer"
+        >
+          Result
+        </a>
+        <a
+          href="#"
+          className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300 cursor-pointer"
+        >
+          Performance analysis
+        </a>
+        <a
+          href="#"
+          className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300 cursor-pointer"
+        >
+          Study Materials
+        </a>
+        <a
+          href="#"
+          className="block py-3 px-5 rounded-lg hover:bg-gradient-to-br hover:from-yellow-500 hover:to-purple-600 hover:text-white transition duration-300 cursor-pointer"
+        >
+          My Courses
+        </a>
+      </nav>
+    </aside>
+  </div>
+)}
 
-          </aside>
-        )}
-
-        {/* Main Content */}
-        <main className="flex-grow p-6 grid grid-cols-2 gap-4">
+      {/* Main Content */}
+      <div className="relative flex flex-row mt-16 h-[calc(100vh-4rem)]">
+        <main className="flex-grow p-6 grid grid-cols-2 gap-4 h-full">
           {/* To-Do List */}
           <section className="bg-white p-6 shadow-xl rounded-xl h-full flex flex-col">
             <h2 className="text-lg font-semibold text-center border-b pb-2 text-purple-800">Pending Works</h2>
@@ -96,7 +105,9 @@ const StudentDashboard = () => {
                   className={`border p-4 rounded-lg bg-gray-100 flex justify-between items-center shadow-sm hover:bg-gray-200 transition ${task.color}`}
                 >
                   <span className="font-medium">{task.title}</span>
-                  <span className="text-sm text-gray-500">{new Date(task.deadline).toLocaleDateString()}</span>
+                  <span className="text-sm text-gray-500">
+                    {new Date(task.deadline).toLocaleDateString()}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -104,15 +115,13 @@ const StudentDashboard = () => {
 
           {/* Profile Section */}
           <section className="bg-white p-6 shadow-xl rounded-xl flex flex-col items-center h-full">
-            <div className="w-32 h-32 bg-gradient-to-r from--yellow-500 to-purple-600 text-white text-3xl font-semibold rounded-full flex items-center justify-center shadow-md">
+            <div className="w-32 h-32 bg-gradient-to-r from-yellow-500 to-purple-600 text-white text-3xl font-semibold rounded-full flex items-center justify-center shadow-md">
               {student.name.split(" ").map((n) => n[0]).join("")}
             </div>
             <h2 className="mt-3 font-semibold text-lg text-gray-800">{student.name}</h2>
             <p className="text-sm text-gray-600">{student.className} Student</p>
             <p className="text-sm text-gray-600 mt-1">Rank: <span className="font-medium">{student.rank}</span></p>
           </section>
-
-       
         </main>
       </div>
     </div>
