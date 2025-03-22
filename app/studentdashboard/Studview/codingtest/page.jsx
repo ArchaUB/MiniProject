@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Button } from "./ui/button";
+import { Textarea } from './ui//textarea';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui//tabs';
 
 export default function CodingTestPage() {
     const [code, setCode] = useState('');

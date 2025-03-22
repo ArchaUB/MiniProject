@@ -1,22 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import TimerBox from "./ui/TimerBox";
 
 const StudentTestPage = () => {
   const [questions, setQuestions] = useState([
-   
-{
-  id: 1,
-  text: "Given a Series 2, 5, 12.5, ?, 78.125, 195.3125. Find what number would come in place of the question mark(?)",
-  options: ["31.25", "40.25", "30.15", "35"],
-  selected: null,
-},
-{
-  id: 2,
-  text: "Joey : Kangaroo:: Calf:?",
-  options: ["Dog", "Cattle", "Cat", "Mouse"],
-  selected: null,
-},
+    {
+      id: 1,
+      text: "Given a Series 2, 5, 12.5, ?, 78.125, 195.3125. Find what number would come in place of the question mark(?)",
+      options: ["31.25", "40.25", "30.15", "35"],
+      selected: null,
+    },
+    {
+      id: 2,
+      text: "Joey : Kangaroo:: Calf:?",
+      options: ["Dog", "Cattle", "Cat", "Mouse"],
+      selected: null,
+    },
     {
       id: 3,
       text: "Who wrote 'Hamlet'?",
@@ -32,12 +32,11 @@ const StudentTestPage = () => {
     {
       id: 5,
       text: "China : Asia:: Canada:?",
-      options: ["South America", "North America", "Antartica", "Australia"],
+      options: ["South America", "North America", "Antarctica", "Australia"],
       selected: null,
     },
   ]);
 
-  // Toggle selection or unselect if the same option is clicked
   const handleOptionSelect = (questionId, optionIndex) => {
     setQuestions((prevQuestions) =>
       prevQuestions.map((q) =>
@@ -49,95 +48,93 @@ const StudentTestPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-500 to-purple-600 flex">
-      
-      {/* Sidebar */}
-      <aside className="w-1/5 bg-white p-6 shadow-lg border-r border-gray-300 rounded-lg flex flex-col items-center justify-center">
-  <h2 className="text-3xl font-semibold text-gray-800 text-center mb-4">Progress</h2>
-<div className="relative w-70 h-70 rounded-full">
-  <svg className="w-full h-full transform -rotate-90 bg-transparent rounded-full" viewBox="0 0 36 36">
-  {/* Background Circle */}
-      <path
-        className="text-purple-300"
-        d="M18 2.0845
-          a 15.9155 15.9155 0 0 1 0 31.831
-          a 15.9155 15.9155 0 0 1 0 -31.831"
-        fill="none"
-        stroke="currentcolour"
-        strokeWidth="1.5"
-      />
-      {/* Progress Circle */}
-      <path
-        className="transition-all duration-500 ease-out"
-        d="M18 2.0845
-          a 15.9155 15.9155 0 0 1 0 31.831
-          a 15.9155 15.9155 0 0 1 0 -31.831"
-        fill="none"
-        stroke="url(#gradient)" 
-        strokeWidth="10.5"
-        strokeLinecap="round"
-        strokeDasharray={`${(questions.filter((q) => q.selected !== null).length / questions.length) * 100}, 100`}
-        style={{ filter: "drop-shadow(0 0 6px rgba(128, 0, 128, 0.4))" }}
-        />
-      {/* Gradient Definition */}
-      <defs>
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#9b5de5" />
-          <stop offset="50%" stopColor="#f15bb5" />
-          <stop offset="100%" stopColor="#fee440" />
-        </linearGradient>
-      </defs>
-    </svg>
-    <div className="absolute inset-0 flex items-center justify-center">
-      <span className="text-gray-800 text-2xl font-semibold">
-        {questions.filter((q) => q.selected !== null).length} / {questions.length}
-      </span>
-    </div>
-  </div>
-</aside>
+    <div className="min-h-screen bg-gradient-to-br from-yellow-500 to-purple-600 text-white">
+      <nav className="w-full bg-gradient-to-br from-yellow-500 to-purple-600 text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 shadow-none border-transparent z-50">
+        <h1 className="text-3xl font-bold">SAPT</h1>
+        <a href="/" className="hover:text-orange-300 cursor-pointer">Home</a>
+      </nav>
 
+      <div className="flex flex-grow mt-20 px-6 gap-6">
+      <div className="w-1/5 flex flex-col gap-6 sticky top-24 self-start">
+  <aside className="bg-white p-6 shadow-lg border border-gray-300 rounded-lg w-full">
 
-      {/* Main Content */}
-      <main className="flex-grow p-8 overflow-auto">
-        
-        <h1 className="text-3xl font-bold text-gray-900 text-center mb-6 bg-gradient-to-r from-gray-900 to-gray-900 inline-block text-transparent bg-clip-text">
-          Test 1
-        </h1>
-        <div className="space-y-6">
-          {questions.map((q) => (
-            <div key={q.id} className="bg-white p-6 shadow-md rounded-xl border-2 border-blue-400">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">{q.text}</h2>
-              <div className="space-y-3">
-                {q.options.map((option, index) => (
-                  <label
-                    key={index}
-                    onClick={() => handleOptionSelect(q.id, index)}
-                    className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-blue-100 transition duration-300 ${
-                      q.selected === index ? "bg-blue-200" : ""
-                    }`}
-                  >
-                    <div
-                      className={`w-5 h-5 flex items-center justify-center rounded-full border-2 transition-all duration-300 ${
-                        q.selected === index ? "bg-red-500 border-red-500" : "border-gray-400"
-                      }`}
-                    >
-                      {q.selected === index && (
-                        <div className="w-2.5 h-2.5 bg-white rounded-full" />
-                      )}
-                    </div>
-                    <span className="text-gray-800 font-medium">{option}</span>
-                  </label>
-                ))}
+            <h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">Attempted</h2>
+            <div className="relative w-32 h-32 mx-auto">
+              <svg className="w-full h-full transform -rotate-90 bg-transparent rounded-full" viewBox="0 0 36 36">
+                <path
+                  className="text-purple-300"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="currentcolour"
+                  strokeWidth="1.5"
+                />
+                <path
+                  className="transition-all duration-500 ease-out"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                  fill="none"
+                  stroke="url(#gradient)"
+                  strokeWidth="10.5"
+                  strokeLinecap="round"
+                  strokeDasharray={`${(questions.filter((q) => q.selected !== null).length / questions.length) * 100}, 100`}
+                  style={{ filter: "drop-shadow(0 0 6px rgba(128, 0, 128, 0.4))" }}
+                />
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#9b5de5" />
+                    <stop offset="50%" stopColor="#f15bb5" />
+                    <stop offset="100%" stopColor="#fee440" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-gray-800 text-xl font-semibold">
+                  {questions.filter((q) => q.selected !== null).length} / {questions.length}
+                </span>
               </div>
             </div>
-          ))}
+          </aside>
+          <div className="w-full sticky top-[calc(100vh-20rem)] self-start">
+          <TimerBox />
+          </div>
         </div>
-      </main>
+
+        <main className="w-4/5 bg-white p-8 shadow-md rounded-lg">
+          <h1 className="text-3xl font-bold text-gray-900 text-center mb-6">Test 1</h1>
+          <div className="space-y-6">
+            {questions.map((q) => (
+              <div key={q.id} className="bg-gray-100 p-6 shadow-md rounded-xl border">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">{q.text}</h2>
+                <div className="space-y-3">
+                  {q.options.map((option, index) => (
+                    <label
+                      key={index}
+                      onClick={() => handleOptionSelect(q.id, index)}
+                      className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer hover:bg-blue-100 transition duration-300 ${
+                        q.selected === index ? "bg-blue-200" : ""
+                      }`}
+                    >
+                      <div
+                        className={`w-5 h-5 flex items-center justify-center rounded-full border-2 transition-all duration-300 ${
+                          q.selected === index ? "bg-red-500 border-red-500" : "border-gray-400"
+                        }`}
+                      >
+                        {q.selected === index && <div className="w-2.5 h-2.5 bg-white rounded-full" />}
+                      </div>
+                      <span className="text-gray-800 font-medium">{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
+      </div>
     </div>
   );
 };
 
 export default StudentTestPage;
+
 
 
 
