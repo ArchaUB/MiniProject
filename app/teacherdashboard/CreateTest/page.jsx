@@ -101,7 +101,7 @@ const CreateTest = () => {
                   </div>
                 ))}
 
-                <button onClick={() => handleAddOption(q.id)} className="flex items-center justify-center w-full bg-black text-white p-2 rounded my-3">
+<button onClick={() => handleAddOption(q.id)} className="flex items-center justify-center bg-black text-white p-2 rounded my-3 w-72 mx-auto">
                   <FaPlus className="mr-2" /> Add Option
                 </button>
               </>
@@ -119,13 +119,14 @@ const CreateTest = () => {
 
         {/* Full-width Add Question & Submit Buttons */}
         <div className="flex flex-col w-full max-w-6xl gap-4">
-          <button onClick={handleAddQuestion} className="flex items-center justify-center bg-green-600 text-white px-4 py-3 rounded w-full">
-            <FaPlus className="mr-2" /> Add Question
-          </button>
-          {questions.length > 0 && (
-            <button className="bg-blue-600 text-white px-6 py-3 rounded w-full">
-              Submit
-            </button>
+        <button onClick={handleAddQuestion} className="flex items-center justify-center bg-green-600 text-white px-4 py-3 rounded w-72 mx-auto">
+  <FaPlus className="mr-2" /> Add Question
+</button>
+
+{questions.length > 0 && (
+  <button className="bg-blue-600 text-white px-6 py-3 rounded w-72 mx-auto">
+    Submit
+  </button>
           )}
         </div>
       </div>
