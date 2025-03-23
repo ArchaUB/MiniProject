@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-
+{/**/ }
 export default function Home() {
   const router = useRouter();
 
@@ -10,7 +10,7 @@ export default function Home() {
       <nav className="fixed top-0 left-0 w-full bg-blue bg-opacity-10 backdrop-blur-md shadow-md py-4 px-8 flex justify-between items-center text-lg text-white">
         <h1 className="text-2xl font-bold">SAPT</h1>
         <ul className="flex space-x-6">
-          <li className="hover:text-orange-300 cursor-pointer ">Home</li>
+          <li className="hover:text-red-300 cursor-pointer ">Home</li>
           <li className="hover:text-orange-300 cursor-pointer">About Us</li>
           <li className="hover:text-orange-300 cursor-pointer">Contact</li>
         </ul>
