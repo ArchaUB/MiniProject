@@ -40,9 +40,8 @@ const StudentDashboard = () => {
           <button onClick={() => setSidebarOpen(!sidebarOpen)} className="focus:outline-none">
             <Menu className="w-6 h-6" />
           </button>
-          <h1 className="text-3xl font-bold tracking-wide">SAPT</h1>
+          <h1 className="text-3xl font-bold tracking-wide"><a href="/" className="hover:text-purple-700 transition duration-100">SAPT</a></h1>
         </div>
-        <a href="/" className="hover:underline text-sm font-medium">Home</a>
       </nav>
 
       {/* Sidebar */}

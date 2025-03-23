@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function TeacherDashboard() {
   const router = useRouter();
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
       <div className="flex flex-col flex-grow items-center justify-center">
         <h1 className="text-3xl font-bold mb-8 text-gray-900">Manage Tests</h1>

@@ -1,6 +1,6 @@
 export const Card = ({ children, className = "" }) => {
   return (
-    <div className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}>
+    <div className={`bg-gray-100 rounded-1xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${className}`}>
       {children}
     </div>
   );

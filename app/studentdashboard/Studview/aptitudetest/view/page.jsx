@@ -49,54 +49,64 @@ const StudentTestPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-500 to-purple-600 text-white">
-      <nav className="w-full bg-gradient-to-br from-yellow-500 to-purple-600 text-white py-4 px-8 flex justify-between items-center fixed top-0 left-0 right-0 shadow-none border-transparent z-50">
-        <h1 className="text-3xl font-bold">SAPT</h1>
-        <a href="/" className="hover:text-orange-300 cursor-pointer">Home</a>
-      </nav>
-
+    <nav className="w-full bg-gradient-to-r from-yellow-500 to-purple-600 text-white py-4 px-6 flex justify-between items-center fixed top-0 left-0 right-0 shadow-lg z-50">
+    <div className="flex items-center gap-4">
+      <button onClick={() => setSidebarOpen(!sidebarOpen)} className="focus:outline-none">
+        <link className="w-6 h-6" />
+      </button>
+      <h1 className="text-3xl font-bold tracking-wide"><a href="/" className="hover:text-purple-700 transition duration-100">SAPT</a></h1>
+    </div>
+  </nav>
       <div className="flex flex-grow mt-20 px-6 gap-6">
       <div className="w-1/5 flex flex-col gap-6 sticky top-24 self-start">
   <aside className="bg-white p-6 shadow-lg border border-gray-300 rounded-lg w-full">
+    <h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">Attempted</h2>
+    <div className="relative w-32 h-32 mx-auto">
+      <svg className="w-full h-full transform -rotate-90 bg-transparent rounded-full" viewBox="0 0 36 36">
+        <path
+          className="text-purple-300"
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          fill="none"
+          stroke="currentcolour"
+          strokeWidth="1.5"
+        />
+        <path
+          className="transition-all duration-500 ease-out"
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          fill="none"
+          stroke="url(#gradient)"
+          strokeWidth="10.5"
+          strokeLinecap="round"
+          strokeDasharray={`${(questions.filter((q) => q.selected !== null).length / questions.length) * 100}, 100`}
+          style={{ filter: "drop-shadow(0 0 6px rgba(128, 0, 128, 0.4))" }}
+        />
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#9b5de5" />
+            <stop offset="50%" stopColor="#f15bb5" />
+            <stop offset="100%" stopColor="#fee440" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="text-gray-800 text-xl font-semibold">
+          {questions.filter((q) => q.selected !== null).length} / {questions.length}
+        </span>
+      </div>
+    </div>
+  </aside>
 
-            <h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">Attempted</h2>
-            <div className="relative w-32 h-32 mx-auto">
-              <svg className="w-full h-full transform -rotate-90 bg-transparent rounded-full" viewBox="0 0 36 36">
-                <path
-                  className="text-purple-300"
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="currentcolour"
-                  strokeWidth="1.5"
-                />
-                <path
-                  className="transition-all duration-500 ease-out"
-                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                  fill="none"
-                  stroke="url(#gradient)"
-                  strokeWidth="10.5"
-                  strokeLinecap="round"
-                  strokeDasharray={`${(questions.filter((q) => q.selected !== null).length / questions.length) * 100}, 100`}
-                  style={{ filter: "drop-shadow(0 0 6px rgba(128, 0, 128, 0.4))" }}
-                />
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#9b5de5" />
-                    <stop offset="50%" stopColor="#f15bb5" />
-                    <stop offset="100%" stopColor="#fee440" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-gray-800 text-xl font-semibold">
-                  {questions.filter((q) => q.selected !== null).length} / {questions.length}
-                </span>
-              </div>
-            </div>
-          </aside>
-          <div className="w-full sticky top-[calc(100vh-20rem)] self-start">
-          <TimerBox />
-          </div>
-        </div>
+  {/* Timer Box */}
+  <div className="w-full">
+    <TimerBox />
+  </div>
+
+  {/* Submit Button Box (Ensuring Proper Placement Below TimerBox) */}
+    <button className="bg-purple-500 text-black py-4 px-8  rounded-lg text-lg font-semibold hover:bg-purple-700 text-black transition duration-300">
+      Submit
+    </button>
+</div>
+
 
         <main className="w-4/5 bg-white p-8 shadow-md rounded-lg">
           <h1 className="text-3xl font-bold text-gray-900 text-center mb-6">Test 1</h1>
