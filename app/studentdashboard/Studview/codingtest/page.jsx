@@ -1,16 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState ,useRef} from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
+import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
 
+
+//comment out later
+const lang={
+    javascript: {lang:"javascript",comment:"//",defaultcode:"console.log('Hello World')"},
+    python: {lang:"python",comment:"#",defaultcode:"print('Hello World')"},
+    c: {lang:"c",comment:"//",defaultcode:"printf('Hello World')"},
+    cpp: {lang:"cpp",comment:"//",defaultcode:"cout<<'Hello World'<<endl;"},
+    java: {lang:"java",comment:"//",defaultcode:"System.out.println('Hello World');"},
+}
+
+
+//end of comment out later
 export default function CodingTestPage() {
     const [code, setCode] = useState("");
     const [output, setOutput] = useState("");
-    const [selectedLanguage, setSelectedLanguage] = useState("python");
+    const [selectedLanguage, setSelectedLanguage] = useState("javascript");
     const [darkMode, setDarkMode] = useState(false);
-
+    const editorRef = useRef(null);
     const runCode = () => {
         setOutput("Running...");
         setTimeout(() => setOutput("Execution successful!"), 1000);
@@ -20,14 +33,16 @@ export default function CodingTestPage() {
         setOutput("Submitting...");
         setTimeout(() => setOutput("Submission successful!"), 1000);
     };
-
+    const handleEditorMount=(editor, monaco)=>{
+        editorRef.current = editor;
+      }
     return (
         <div className={`flex flex-col h-screen ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
             {/* Navbar */}
             <nav className="p-4 flex justify-between items-center bg-gray-400 dark:bg-gray-900 border-b">
                 <h1 className="text-lg font-bold dark:text-white">Coding Test</h1>
                 <div className="flex gap-4">
-                    <LanguageSelect onSelect={setSelectedLanguage} />
+                    <LanguageSelect onSelect={setSelectedLanguage} onChange={()=>{console.log(selectedLanguage)} }/>
                     <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
                 </div>
             </nav>
@@ -39,10 +54,10 @@ export default function CodingTestPage() {
                 <h2 className="text-2xl font-bold mb-4">Merge Strings Alternately</h2>
     <p className="mb-2">You are given two strings word1 and word2...</p>
     <h3 className="text-xl font-semibold mb-2">Example:</h3>
-    <pre className="p-2 bg-gray-100 dark:bg-gray-800 text-black dark:text-white rounded">
+    <pre className={`p-2 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
         Input: word1 = "abc", word2 = "pqr" Output: "apbqcr"
     </pre>
-    <pre className="p-2 bg-gray-100 dark:bg-gray-800 text-black dark:text-white rounded">
+    <pre className={`p-2 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
         Input: word1 = "ab", word2 = "pqrs" Output: "apbqrs"
     </pre>
                     <h3 className="text-xl font-semibold mb-2">Constraints:</h3>
@@ -60,14 +75,13 @@ export default function CodingTestPage() {
                             <TabsTrigger value="output">Output</TabsTrigger>
                         </TabsList>
                         <TabsContent value="code">
-                        <Textarea
-    placeholder="Write your code here..."
-    value={code}
-    onChange={(e) => setCode(e.target.value)}
-    className="w-full h-64 p-2 border rounded resize bg-white text-black 
-               dark:bg-gray-900 dark:text-white 
-               placeholder-gray-500 dark:placeholder-gray-300"
-/>
+                        <Editor height="50vh"
+                         defaultLanguage={selectedLanguage} 
+                         defaultValue={lang[selectedLanguage]["defaultcode"]} 
+                         language={selectedLanguage}
+                         onMount={handleEditorMount}
+                        //  theme="vs-dark"
+                         />
 
     <div className="mt-2 flex gap-2">
         <Button onClick={runCode} className="bg-blue-500">Run</Button>
@@ -88,9 +102,10 @@ export default function CodingTestPage() {
 function LanguageSelect({ onSelect }) {
     return (
         <select
-            onChange={(e) => onSelect(e.target.value)}
+            onChange={(e) => {onSelect(e.target.value);}}
             className="p-2 border rounded bg-gray-100 dark:bg-gray-700 text-black dark:text-white"
         >
+            <option value="javascript">Javascript</option>
             <option value="python">Python</option>
             <option value="c">C</option>
             <option value="cpp">C++</option>
