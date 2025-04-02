@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "app",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@components/*": ["components/*"]
     }
   },
-  "include": ["./", "app/newpages/teachdash/page.jsx"]
-
+  "include": ["app"]
 }
-
-
 
 // {
 //   "compilerOptions": {
