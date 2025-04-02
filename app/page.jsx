@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative">
-      <div className="absolute inset-0 bg-[url('/images/bg1.jpg')] bg-cover bg-center opacity-30"></div>
+      <div className="absolute inset-0 bg-[url('/images/bg1.jpg')] bg-cover bg-center opacity-70"></div>
       <div className="relative z-10 text-white">
         {/* Navbar */}
         <nav className="fixed top-0 left-0 w-full bg-blue bg-opacity-10 backdrop-blur-md shadow-md py-4 px-8 flex justify-between items-center text-lg text-white z-50">
@@ -96,3 +96,4 @@ export default function Home() {
     </div>
   );
 }
+
