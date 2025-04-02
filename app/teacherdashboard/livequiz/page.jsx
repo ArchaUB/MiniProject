@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AddQuestionsPage() {
   const [questions, setQuestions] = useState([
     { id: 1, text: "", options: ["", "", "", ""] } // Default question with 4 options
   ]);
+  const router = useRouter();
 
   const addQuestion = () => {
     setQuestions([...questions, { id: Date.now(), text: "", options: ["", "", "", ""] }]);
@@ -16,7 +18,7 @@ export default function AddQuestionsPage() {
       setQuestions(questions.filter(q => q.id !== id));
     }
   };
-
+  
   const updateQuestionText = (id, newText) => {
     setQuestions(questions.map(q => (q.id === id ? { ...q, text: newText } : q)));
   };
@@ -45,6 +47,7 @@ export default function AddQuestionsPage() {
 
   const handleSubmit = () => {
     console.log("Quiz Submitted:", questions);
+    router.push("/teacherdashboard/quizallow");
   };
 
   return (
