@@ -6,6 +6,15 @@ import { useRouter } from "next/navigation";
 import react from "react";
 
 const StudentDashboard = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login");  // Redirect to login page if no token
+    }
+  }, []);
+  
   const [tasks, setTasks] = useState([
     { id: 1, title: "Aptitude Test 1", deadline: "2025-03-08", color: "border-red-500" },
     { id: 2, title: "Aptitude Test 2", deadline: "2025-03-07", color: "border-green-500" },
@@ -30,7 +39,7 @@ const StudentDashboard = () => {
       [...prevTasks].sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
     );
   }, []);
-  const router = useRouter();
+ 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-500 to-purple-600 text-black">
