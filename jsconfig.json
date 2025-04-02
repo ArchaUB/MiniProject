@@ -5,7 +5,7 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["./"]
+  "include": ["./", "app/newpages/teachdash/page.jsx"]
 
 }
 
