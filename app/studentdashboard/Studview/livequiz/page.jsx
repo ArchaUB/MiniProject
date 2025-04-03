@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-//import TimerBox from "@/ui/TimerBox";
+import TimerBox from "@/ui/TimerBox";
 
 const StudentTestPage = () => {
   const [questions, setQuestions] = useState([
@@ -54,9 +54,9 @@ const StudentTestPage = () => {
             </p>
           </aside>
 
-          {/* <div className="w-full">
+          <div className="w-full">
             <TimerBox />
-          </div> */}
+          </div> 
         </div>
 
         {/* Main Content */}

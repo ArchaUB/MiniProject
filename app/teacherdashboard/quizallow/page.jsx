@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 export default function LiveQuizWaitingRoom() {
+  const router = useRouter();
   const [waitingStudents, setWaitingStudents] = useState([
     "Alice", "Bob", "Charlie", "David"
   ]);
@@ -19,6 +22,7 @@ export default function LiveQuizWaitingRoom() {
   };
 
   const startQuiz = () => {
+    console.log("pressed")
     router.push("/teacherdashboard/quizmain");
 
   };
