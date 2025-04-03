@@ -2,7 +2,6 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-
 // Optional: Create an Auth Context for global authentication state
 const StudentSignIn = () => {
     const router = useRouter();
@@ -24,6 +23,9 @@ const StudentSignIn = () => {
             );
 
             const token = response.data.token;
+            
+            localStorage.setItem("name" ,response.data.name)
+            localStorage.setItem("email",response.data.email)
             localStorage.setItem("token", token); // Save JWT token in local storage
 
             router.push("/studentdashboard"); // Redirect after login
@@ -31,7 +33,7 @@ const StudentSignIn = () => {
             if (error.response) {
                 setError(`Login failed: ${error.response.data.message || "Invalid credentials"}`);
             } else {
-                setError("Network error. Please try again.");
+                setError("Network error. Please try again");
             }
         }
     };

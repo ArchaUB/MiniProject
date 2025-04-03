@@ -3,17 +3,57 @@
 import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { useRouter } from "next/navigation";
-import react from "react";
+import axios from "axios";
+import { data } from "autoprefixer";
+
+const fetchdata=async (token)=>{
+  try{
+    const response = await axios.post(
+      "http://localhost:8080/fetchStudent",
+      {}, // Empty body, as we're extracting student ID from token
+      {
+          headers: {
+              Authorization: `Bearer ${token}`, // Send token in headers
+          },
+      }
+  );
+     return response     
+  } catch (error) {
+      if (error.response?.status===401) {
+        return {status:401}
+      }
+      console.error(error.response?.data || "Error fetching student data");
+  }
+}
 
 const StudentDashboard = () => {
   const router = useRouter();
+  const [data,setData] = useState(null)
+  const [student,setStudent] = useState({
+    name: localStorage.getItem("name")||"errorfetchingname",
+    className: "S6 IT",
+    completedTasks: 14,
+    totalTasks: 20,
+    rank: 5,
+    level: "Topper",
+  })
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
       router.push("/login");  // Redirect to login page if no token
     }
+    const user=fetchdata(token)
+    .then(async (response)=>{
+      if (response.status===401){
+        router.push("/login")
+      }
+      await setData(response.data)
+    })
+    
   }, []);
+
+
   
   const [tasks, setTasks] = useState([
     { id: 1, title: "Aptitude Test 1", deadline: "2025-03-08", color: "border-red-500" },
@@ -25,14 +65,14 @@ const StudentDashboard = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const student = {
-    name: "Meera",
-    className: "S6 IT",
-    completedTasks: 14,
-    totalTasks: 20,
-    rank: 5,
-    level: "Topper",
-  };
+  // const student = {
+  //   name: "name",
+  //   className: "S6 IT",
+  //   completedTasks: 14,
+  //   totalTasks: 20,
+  //   rank: 5,
+  //   level: "Topper",
+  // };
 
   useEffect(() => {
     setTasks((prevTasks) =>
