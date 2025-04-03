@@ -46,6 +46,7 @@ const StudentDashboard = () => {
     const user=fetchdata(token)
     .then(async (response)=>{
       if (response.status===401){
+        localStorage.clear()
         router.push("/login")
       }
       await setData(response.data)
